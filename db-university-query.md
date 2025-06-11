@@ -39,3 +39,31 @@ SELECT COUNT(\*) FROM db_university.departments;
 
 SELECT COUNT(\*) FROM db_university.teachers
 WHERE phone IS NULL;
+
+### Contare quanti iscritti ci sono stati ogni anno
+
+SELECT
+YEAR(enrolment_date) AS anno_iscrizione,
+COUNT(\*) AS totale_iscritti
+FROM db_university.students
+GROUP BY anno_iscrizione
+ORDER BY anno_iscrizione;
+
+### Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+
+SELECT
+office_address AS indirizzo,
+COUNT(\*) AS professori
+FROM db_university.teachers
+GROUP BY office_address
+ORDER BY professori DESC;
+
+### Calcolare la media dei voti di ogni appello d'esame
+
+SELECT
+AVG(vote) AS "vote_average",
+exam_id AS "year"
+FROM db_university.exam_student
+GROUP BY exam_id;
+
+### Contare quanti corsi di laurea ci sono per ogni dipartimento
